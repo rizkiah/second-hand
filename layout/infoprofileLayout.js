@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import React, { useEffect, useState } from "react";
 import InputBox from "../components/inputBox";
 import CategoryCard from "../components/categoryCard";
@@ -5,6 +6,8 @@ import axios from "axios";
 import cookie from "js-cookie";
 import { GetToken } from "../utils/getToken";
 import FormData from "form-data";
+import Swal from "sweetalert2";
+
 
 const API = process.env.NEXT_PUBLIC_API_ENDPOINT;
 
@@ -40,8 +43,15 @@ function InfoProfileLayout({ user, token }) {
           "Content-Type": `multipart/form-data`,
         },
       });
-      alert("success Update Profile");
-      window.location.reload();
+      Swal.fire({
+        position: 'top-center',
+        icon: 'success',
+        title: 'Update Profile Berhasil',
+        showConfirmButton: false,
+        timer: 2000,
+      })
+
+      router.back();
     } catch (error) {
       console.log(error.response);
     }
@@ -89,13 +99,15 @@ function InfoProfileLayout({ user, token }) {
     getUsers(), getProvince();
   }, []);
 
+
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <div className="">
           <div className="col-12 mt-2 text-center">
             <div className="col-12">
-              <img
+              <img className="img-preview"
                 src={userData.user_image}
                 alt=""
                 width="100px"
@@ -212,7 +224,7 @@ function InfoProfileLayout({ user, token }) {
                 type="number"
                 name="user_phone"
                 className="form-control mt-2"
-                placeholder="Contoh: +6283180217394"
+                placeholder="Contoh: 083180217394"
                 value={userData.user_phone}
                 onChange={(e) => handleChange(e)}
               />

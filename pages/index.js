@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 /* eslint-disable @next/next/no-sync-scripts */
 import axios from "axios";
 import Head from "next/head";
@@ -213,7 +214,7 @@ export default function Home({
                   ></button>
                 </div>
                 <div className="offcanvas-body">
-                  <a href="/login" className="text-decoration-none">
+                  <a href="/account/login" className="text-decoration-none">
                     <ButtonMasuk />
                   </a>
                 </div>

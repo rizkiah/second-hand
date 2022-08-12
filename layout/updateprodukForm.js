@@ -2,19 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import FormData from "form-data";
 import axios from "axios";
-import Head from "next/head";
 import InputBox from "../components/inputBox";
 import CategoryCard from "../components/categoryCard";
 import MainButton from "../components/mainButton";
+import Swal from "sweetalert2";
 
 const API = process.env.NEXT_PUBLIC_API_ENDPOINT;
 
-function EditProdukLayout({product, token}) {
+function EditProdukLayout({ product, token }) {
 
   const router = useRouter();
   const [categories, setCategories] = useState([]);
   const [productData, setProductData] = useState({
-    product_name: product.product_name||"",
+    product_name: product.product_name || "",
     product_price: product.product_price,
     product_description: product.product_description,
     product_image: product.product_image,
@@ -27,6 +27,7 @@ function EditProdukLayout({product, token}) {
   };
 
   const handleSubmit = async (e) => {
+
     e.preventDefault();
     const data = new FormData();
     data.append("product_name", productData.product_name);
@@ -40,11 +41,20 @@ function EditProdukLayout({product, token}) {
         url: `${API}/products/${product.id}`,
         data: data,
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("user_token")}`,
+          Authorization: `Bearer ${token}`,
           "Content-Type": `multipart/form-data`,
         },
       });
-      router.back();
+      Swal.fire({
+        position: 'top-center',
+        icon: 'success',
+        title: 'Update Produk Berhasil',
+        showConfirmButton: false,
+        timer: 2000,
+      })
+
+      router.replace(`/produk/${product.id}`);
+
     } catch (error) {
       console.log(error.response);
     }
@@ -100,7 +110,7 @@ function EditProdukLayout({product, token}) {
               }}
             >
               <option value="">Pilih Kategori</option>
-              {categories.map((category)=>(
+              {categories.map((category) => (
                 <option selected={category.id == productData.category_id} value={`${category.id}`} key={category.id}>{category.category_name}</option>
               ))}
 
@@ -125,7 +135,9 @@ function EditProdukLayout({product, token}) {
           </div>
           <div className="col-12 mt-2">
             <label>Foto Produk</label>
-            <img width="200px" src={productData.product_image}/>
+            <div>
+              <img width="200px" src={productData.product_image} />
+            </div>
             <InputBox
               type="file"
               name="product_image"
@@ -140,6 +152,7 @@ function EditProdukLayout({product, token}) {
                 className="p-3 flex-grow-1 text-center"
                 text="Preview"
                 rad="16"
+
               />
               <CategoryCard
                 type="submit"

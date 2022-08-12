@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import React from "react";
 import Head from "next/head";
 import UpdateProdukLayout from "../../layout/updateprodukForm";
@@ -5,6 +6,7 @@ import Top from "../../components/top";
 import useResize from "../../hooks/useResize";
 import { GetToken } from "../../utils/getToken";
 import axios from "axios";
+import Link from "next/link";
 
 export async function getServerSideProps(context) {
   const API = process.env.NEXT_PUBLIC_API_ENDPOINT;
@@ -30,7 +32,7 @@ export async function getServerSideProps(context) {
 }
 
 
-export default function AddProduk({product, token}){
+export default function AddProduk({ product, token }) {
 
   const screen = useResize();
   console.log(product);
@@ -46,16 +48,21 @@ export default function AddProduk({product, token}){
         <Top />
       ) : (
         <div className="d-flex d-row gap-2 m-3 fw-bold fs-4 justify-content-center">
-          <i className="bi bi-arrow-left pe-3"></i>
+          <Link href="/seller">
+            <i className="bi bi-arrow-left pe-3">
+            </i>
+          </Link>
           <p className="">Lengkapi Detail Produk</p>
         </div>
       )}
 
       {screen.md ? (
         <div className="col-6 offset-3 mt-3 d-flex flex-column justify-content-center">
-          <i className="bi bi-arrow-left fs-3 mt-2"></i>
+          <Link href="/seller">
+            <i className="bi bi-arrow-left fs-3 mt-2"></i>
+          </Link>
 
-          <UpdateProdukLayout product={product} token={token}/>
+          <UpdateProdukLayout product={product} token={token} />
         </div>
       ) : (
         <div className="px-3">

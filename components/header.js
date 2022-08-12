@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 /* eslint-disable react/no-unknown-property */
 import React, { useState } from "react";
-import Search from "./search";
 import { useRouter } from "next/router";
 import ButtonMasuk from "./buttonMasuk";
 import Link from "next/link";
@@ -43,7 +42,7 @@ function Header({ user, notifications }) {
             </Link>
           </div>
           <div>
-            <Search />
+            <p className="SecondHand">SecondHand</p>
           </div>
         </div>
         <div>
@@ -114,7 +113,7 @@ function Header({ user, notifications }) {
                             borderRadius: "12px",
                           }}
                         ></img>
-                        <div style={{width:"100%"}}>
+                        <div style={{ width: "100%" }}>
                           <div className="d-flex justify-content-between" style={{ fontSize: "0.75rem", color: "gray" }}>
                             {notification.Order.order_status == 0 ? (
                               <div>Penawaran Produk</div>

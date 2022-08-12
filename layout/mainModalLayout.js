@@ -10,7 +10,7 @@ function MainModalLayout({ onClick, title, description, children }) {
         height: "100vh",
         width: "100vw",
         backgroundColor: "rgba(00,00,00,0.5)",
-        zIndex: "10000",
+        zIndex: "1059",
       }}
     >
       <div

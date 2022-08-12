@@ -38,6 +38,7 @@ export default function Login() {
       router.replace("/");
     } catch (error) {
       console.log(error.response);
+
     }
   };
 
@@ -80,27 +81,6 @@ export default function Login() {
               placeholder="Masukkan password"
             />
           </div>
-
-          {/* <div className="col-12 mt-2">
-            <label>Role</label>
-            <select
-              required
-              name="user_role"
-              className="form-select mt-2"
-              aria-label="Default select example"
-              onChange={(e) => handleChange(e)}
-              style={{
-                padding: "12px 16px",
-                border: "1px solid #D0D0D0",
-                borderRadius: "16px",
-                display: "flex",
-              }}
-            >
-              <option value="">Pilih Role</option>
-              <option value="1">Buyer</option>
-              <option value="2">Seller</option>
-            </select>
-          </div> */}
 
           <div className="mt-4 mb-4 text-center fw-bold">
             <div className="start-0 end-0 d-flex">

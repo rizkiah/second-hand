@@ -7,9 +7,9 @@ function ListSeller({ transactions }) {
     <>
       {listsize > 0 ? (
         <div>
-          {transactions.map((transaction,key) => (
+          {transactions.map((transaction, key) => (
             <li key={key}>
-              <ItemList product={transaction}/>
+              <ItemList product={transaction} />
             </li>
           ))}
         </div>
@@ -22,7 +22,7 @@ function ListSeller({ transactions }) {
             style={{ width: "45%" }}
           />
           <p className="m-0 pt-5">
-            Belum ada produk nih, sabar ya rejeki nggak kemana kok
+            Belum ada penawaran produk nih, sabar ya rejeki nggak kemana kok
           </p>
         </div>
       )}

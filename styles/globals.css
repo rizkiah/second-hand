@@ -50,3 +50,13 @@ padding: 10px;
   background-blend-mode: screen;
   background: linear-gradient(#ffe9c9, #ffe9ca);
 }
+
+.SecondHand{
+  font-size: 2rem;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color:var(--purple)
+}
+
+.defaultColor{
+  color:#7126b5;
+}

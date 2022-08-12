@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import FormData from "form-data";
 import axios from "axios";
-import Head from "next/head";
 import InputBox from "../components/inputBox";
 import CategoryCard from "../components/categoryCard";
-import MainButton from "../components/mainButton";
+import Swal from "sweetalert2";
+
 
 const API = process.env.NEXT_PUBLIC_API_ENDPOINT;
 
@@ -43,7 +43,14 @@ function AddProdukLayout({ user, token }) {
           "Content-Type": `multipart/form-data`,
         },
       });
-      router.replace("/");
+      Swal.fire({
+        position: 'top-center',
+        icon: 'success',
+        title: 'Tambah Data Produk Berhasil',
+        showConfirmButton: false,
+        timer: 2000,
+      })
+      router.back();
     } catch (error) {
       console.log(error.response);
     }
@@ -99,7 +106,7 @@ function AddProdukLayout({ user, token }) {
               }}
             >
               <option value="">Pilih Kategori</option>
-              {categories.map((category)=>(
+              {categories.map((category) => (
                 <option value={`${category.id}`} key={category.id}>{category.category_name}</option>
               ))}
 
@@ -134,11 +141,6 @@ function AddProdukLayout({ user, token }) {
           </div>
           <div className="col-12 mt-5 mb-5 fw-bold">
             <div className="d-flex flex-row gap-2">
-              <MainButton
-                className="p-3 flex-grow-1 text-center"
-                text="Preview"
-                rad="16"
-              />
               <CategoryCard
                 type="submit"
                 className="p-3 flex-grow-1"

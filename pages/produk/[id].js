@@ -44,15 +44,20 @@ export async function getServerSideProps(context) {
 function Produk({ token, user, product }) {
   const screen = useResize();
   const router = useRouter();
+
+  //state tawar pop up di set false (tidak muncul)
   const [tawarPopup, setTawarPopup] = useState(false);
+
+  //logic untuk menampilkan tawarpop : false->true
   const handleTawarPopup = () => setTawarPopup((tawarPopup = !tawarPopup));
+
   let isOwner = false;
   if (user != null && product.User.id == user.user_id) {
     isOwner = true;
   }
 
   const handleEdit = async (e) => {
-    router.replace("/update-produk/"+product.id);
+    router.replace("/update-produk/" + product.id);
   };
 
   const handleDelete = async (e) => {
@@ -90,7 +95,7 @@ function Produk({ token, user, product }) {
             className="p-3 flex-grow-1 text-center bg-white"
             text="Edit"
             rad="16"
-            onClick={(e)=>handleEdit(e)}
+            onClick={(e) => handleEdit(e)}
           />
           <button
             onClick={(e) => handleDelete(e)}
@@ -221,11 +226,12 @@ function Produk({ token, user, product }) {
         {tawarPopup && (
           <TawarPopUp
             token={token}
-            onClick={handleTawarPopup}
+            handletawar={handleTawarPopup}
             product_name={product.product_name}
             product_image={product.product_image}
             product_id={product.id}
             product_price={product.product_price}
+            user={user}
           />
         )}
       </MainLayout>
