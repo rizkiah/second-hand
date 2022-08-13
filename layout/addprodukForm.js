@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import FormData from "form-data";
 import axios from "axios";
+import Head from "next/head";
 import InputBox from "../components/inputBox";
 import CategoryCard from "../components/categoryCard";
 import Swal from "sweetalert2";
@@ -43,6 +44,7 @@ function AddProdukLayout({ user, token }) {
           "Content-Type": `multipart/form-data`,
         },
       });
+
       Swal.fire({
         position: 'top-center',
         icon: 'success',
@@ -50,7 +52,7 @@ function AddProdukLayout({ user, token }) {
         showConfirmButton: false,
         timer: 2000,
       })
-      router.back();
+      router.replace("/seller");
     } catch (error) {
       console.log(error.response);
     }
@@ -68,6 +70,7 @@ function AddProdukLayout({ user, token }) {
   useEffect(() => {
     getCategories();
   }, [categories]);
+
   return (
     <div>
       <form onSubmit={handleSubmit}>

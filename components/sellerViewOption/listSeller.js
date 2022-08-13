@@ -1,7 +1,7 @@
 import React from "react";
 import ItemList from "../itemList";
 
-function ListSeller({ transactions }) {
+function ListSeller({ transactions, token }) {
   const listsize = Object.keys(transactions).length;
   return (
     <>
@@ -9,7 +9,7 @@ function ListSeller({ transactions }) {
         <div>
           {transactions.map((transaction, key) => (
             <li key={key}>
-              <ItemList product={transaction} />
+              <ItemList transaction={transaction} token={token} />
             </li>
           ))}
         </div>

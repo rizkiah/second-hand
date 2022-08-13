@@ -11,6 +11,8 @@ import ProdukDesktopLayout from "../../layout/produkDesktop";
 import { GetToken } from "../../utils/getToken";
 import MainButton from "../../components/mainButton";
 import TawarPopUp from "../../components/popup/tawarPopUp";
+import Swal from "sweetalert2";
+
 const API = process.env.NEXT_PUBLIC_API_ENDPOINT;
 
 export async function getServerSideProps(context) {
@@ -60,6 +62,25 @@ function Produk({ token, user, product }) {
     router.replace("/update-produk/" + product.id);
   };
 
+
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire(
+        'Deleted!',
+        'Your file has been deleted.',
+        'success'
+      )
+    }
+  })
+  //handle delete produk
   const handleDelete = async (e) => {
     console.log("Deleting item...");
     e.preventDefault();
@@ -75,7 +96,6 @@ function Produk({ token, user, product }) {
     } catch (error) {
       console.log(error);
     }
-
     router.replace("/seller");
   };
 
@@ -158,7 +178,7 @@ function Produk({ token, user, product }) {
                 className={"p-3 flex-grow-1"}
                 style={{
                   color: "white",
-                  backgroundColor: "red",
+                  backgroundColor: "purple",
                   borderRadius: `16px`,
                 }}
               >

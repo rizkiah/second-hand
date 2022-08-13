@@ -26,6 +26,7 @@ export async function getServerSideProps({ req, res }) {
 
   try {
     if (token != "") {
+      //mengambil data user
       const res_user = await axios({
         method: `get`,
         url: `${API}/users`,
@@ -35,7 +36,7 @@ export async function getServerSideProps({ req, res }) {
       });
       user = res_user.data.data;
     }
-
+    //mengambil data product
     const res_products = await axios({
       method: `get`,
       url: `${API}/products/user/id`,
@@ -45,6 +46,7 @@ export async function getServerSideProps({ req, res }) {
     });
     products = res_products.data.data;
 
+    //mengambil data transaksi
     const res_transactions = await axios({
       method: `get`,
       url: `${API}/users/transactions`,
@@ -54,6 +56,7 @@ export async function getServerSideProps({ req, res }) {
     });
     transactions = res_transactions.data.data;
 
+    //mengambil data notifikasi
     const res_notifications = await axios({
       method: `get`,
       url: `${API}/users/notifications`,
@@ -62,6 +65,7 @@ export async function getServerSideProps({ req, res }) {
       },
     });
     notifications = res_notifications.data.data;
+
   } catch (error) {
     console.log(error.response);
   }
@@ -69,6 +73,7 @@ export async function getServerSideProps({ req, res }) {
   return {
     props: {
       user,
+      token,
       products,
       transactions,
       notifications,
@@ -78,6 +83,7 @@ export async function getServerSideProps({ req, res }) {
 
 export default function DaftarJual({
   user,
+  token,
   products,
   transactions,
   notifications,
@@ -187,7 +193,7 @@ export default function DaftarJual({
               {categoryState == 1 ? (
                 <GridSeller products={products} user={user} />
               ) : (
-                <ListSeller transactions={transactions} />
+                <ListSeller transactions={transactions} token={token} />
               )}
             </div>
           </div>
