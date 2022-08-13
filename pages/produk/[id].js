@@ -62,43 +62,45 @@ function Produk({ token, user, product }) {
     router.replace("/update-produk/" + product.id);
   };
 
-
-  Swal.fire({
-    title: 'Are you sure?',
-    text: "You won't be able to revert this!",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, delete it!'
-  }).then((result) => {
-    if (result.isConfirmed) {
-      Swal.fire(
-        'Deleted!',
-        'Your file has been deleted.',
-        'success'
-      )
-    }
-  })
   //handle delete produk
   const handleDelete = async (e) => {
-    console.log("Deleting item...");
-    e.preventDefault();
-    try {
-      await axios({
-        method: `delete`,
-        url: `${API}/products/${product.id}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      alert("Item being deleted. Please wait.");
-    } catch (error) {
-      console.log(error);
-    }
-    router.replace("/seller");
-  };
+    Swal.fire({
+      title: 'Apakah Kamu Yakin?',
+      text: "Data yang dihapus tidak dapat dikembalikan",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const sendRequest = async (e) => {
+          try {
+            await axios({
+              method: `delete`,
+              url: `${API}/products/${product.id}`,
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            });
 
+          } catch (err) {
+            console.error(err);
+          }
+
+        }
+        sendRequest();
+        Swal.fire(
+          'Deleted!',
+          'Produk Berhasil Dihapus',
+          'success'
+        )
+        router.replace("/seller");
+      }
+    })
+  }
+
+  //img produk
   let images = (
     <img
       className="w-100"
