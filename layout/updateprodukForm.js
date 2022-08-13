@@ -148,16 +148,11 @@ function EditProdukLayout({ product, token }) {
           </div>
           <div className="col-12 mt-5 mb-5 fw-bold">
             <div className="d-flex flex-row gap-2">
-              <MainButton
-                className="p-3 flex-grow-1 text-center"
-                text="Preview"
-                rad="16"
 
-              />
               <CategoryCard
                 type="submit"
                 className="p-3 flex-grow-1"
-                text="Terbitkan"
+                text="Perbarui"
                 rad="16"
               />
             </div>

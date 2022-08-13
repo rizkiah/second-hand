@@ -168,26 +168,10 @@ export default function Home({
                 >
                   <img className="navbar-toggler-icon fs-1" src="/toggle.png" />
                 </button>
-                <div
-                  className="input-group mt-2 me-2"
-                  style={{
-                    background: "#ffffff",
-                    borderRadius: "16px",
-                  }}
-                >
-                  <input
-                    type="text"
-                    className="form-control border-0"
-                    placeholder="Cari di sini..."
-                    style={{
-                      borderRadius: "16px",
-                      height: "48px",
-                    }}
-                  />
-                  <span className="input-group-text bg-transparent border-0 fs-4 px-4">
-                    <i className="bi bi-search"></i>
-                  </span>
+                <div>
+                  <p className="SecondHand mx-3 my-3">SecondHand</p>
                 </div>
+
               </div>
               <div className="row px-5 mt-3">
                 <div className="col-7">
@@ -230,7 +214,8 @@ export default function Home({
             products_kendaraan={products_kendaraan}
           />
         </div>
-      )}
+      )
+      }
     </>
   );
 }
