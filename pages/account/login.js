@@ -37,9 +37,10 @@ export default function Login() {
       cookie.set("token", res.data.token)
       router.replace("/");
     } catch (error) {
-      console.log(error.response);
+      console.log(error.respon);
 
     }
+
   };
 
   const handleChange = (e) => {

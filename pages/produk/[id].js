@@ -124,7 +124,7 @@ function Produk({ token, user, product }) {
             className={"p-3 flex-grow-1"}
             style={{
               color: "white",
-              backgroundColor: "red",
+              backgroundColor: "purple",
               borderRadius: `16px`,
             }}
           >
@@ -245,6 +245,8 @@ function Produk({ token, user, product }) {
             />
           )}
         </div>
+        {/* inline if logical operator with &&
+      jika kondisi benar maka element di kanan tanda && akan dijalankan /dioutputkan */}
         {tawarPopup && (
           <TawarPopUp
             token={token}
